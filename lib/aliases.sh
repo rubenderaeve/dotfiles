@@ -52,7 +52,7 @@ remove_all_aliases() {
 #   ShellCheck Documentation: https://github.com/koalaman/shellcheck
 
 load_custom_aliases() {
-  local aliases_dir="${HOME}/.dotfiles/lib/aliases"
+  local aliases_dir="${DOTFILES}/aliases"
   local loaded_count=0
   local verbose=${DOTFILES_VERBOSE:-0}
   local ret=0
