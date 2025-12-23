@@ -75,6 +75,9 @@ if command -v git &>/dev/null; then
   # Restore working tree files.
   alias grs='git restore'
 
+  # Restore staged working tree files.
+  alias grss='git restore --staged'
+
   # Remove files from the working tree and from the index.
   alias grm='git remove'
 
@@ -111,8 +114,9 @@ if command -v git &>/dev/null; then
   # the commit history on the left hand side of the output.
   alias glg='git log --oneline --graph --full-history --all --color --decorate'
 
-  # Show various types of objects.
-  alias gs='git show'
+  # Show commit logs and Draw a text-based graphical representation of
+  # the commit history on the left hand side of the output.
+  alias glog='git log --graph --full-history --all --abbrev-commit --decorate'
 
   ##  ------------------------------------------------------------------
   ##  1.4 Aliases to list, create, or delete branches
@@ -136,17 +140,20 @@ if command -v git &>/dev/null; then
   # Print a list of branches and their commits.
   alias gbrsb='git show-branch'
 
-  # gct: Record changes to the repository.
-  alias gct='git commit'
-
   # gmg: Join two or more development histories together.
   alias gmg='git merge'
 
   # grb: Reapply commits on top of another base tip.
   alias grb='git rebase'
 
+  # grbi: git rebase interactive
+  alias grbi='git rebase -i HEAD'
+
+  # grbih: git rebase interactive head
+  alias grbih='git rebase -i HEAD~1'
+
   # grs: Reset current HEAD to the specified state.
-  alias grs='git reset'
+  alias grset='git reset'
 
   # gswb: Switch branches.
   alias gswb='git switch'
@@ -166,26 +173,32 @@ if command -v git &>/dev/null; then
 
   # Update remote refs along with associated objects.
   alias gph='git push'
+  #
+  # Update remote refs along with associated objects force.
+  alias gphf='git push --force'
 
   ##  ------------------------------------------------------------------
   ##  1.6 Aliases to record changes to the repository
   ##  ------------------------------------------------------------------
 
+  # Commit command with open editor and show verbose (diff).
+  alias gc='git commit -ev'
+  #
   # Commit command to automatically "add" changes from all known files.
-  alias gc='git commit -a'
+  alias gca='git commit -aev'
 
   # Amend the tip of the current branch rather than creating a new
   # commit.
-  alias gca='git commit --amend'
+  alias gcam='git commit --amend'
 
   # Commit all changes.
   alias gcall='git add -A && git commit -av'
 
   # Amend the tip of the current branch, and edit the message.
-  alias gcam='git commit --amend --message '
+  alias gcamm='git commit --amend --message '
 
   # Amend the tip of the current branch, and do not edit the message.
-  alias gcane='git commit --amend --no-edit'
+  alias gcamne='git commit --amend --no-edit'
 
   # Commit interactive.
   alias gcint='git commit --interactive'
@@ -296,7 +309,7 @@ if command -v git &>/dev/null; then
 
   # Publish the current branch by pushing it to the remote "origin", and
   # setting the current branch to track the upstream branch.
-  alias gpb='git push --set-upstream origin $(git current-branch)'
+  alias gpb='git push --set-upstream origin $(git symbolic-ref --short HEAD)'
 
   # Push local changes to the online repository.
   alias gpo='git push origin'
@@ -363,7 +376,7 @@ if command -v git &>/dev/null; then
   alias grprint="git remote -v | sed -n '/github.com.*push/{ s/^[^[:space:]]\+[[:space:]]\+//; s|git@github.com:|https://github.com/|; s/\.git.*//; p }'"
 
   # Gives some information about the remote <name>.
-  alias grs='git show'
+  alias gs='git show'
 
   # Display where the origin resides.
   alias grso='git remote show origin'
@@ -541,4 +554,7 @@ if command -v git &>/dev/null; then
 
   # Undo the last push.
   alias undopush="git push -f origin HEAD^:master"
+
+  alias gch="git cherry-pick"
+
 fi
