@@ -80,11 +80,14 @@ APP_DIR="${HOME}/Applications"
 CODE_DIR="${HOME}/Code"
 DESK_DIR="${HOME}/Desktop"
 DOCS_DIR="${HOME}/Documents"
-DOTF_DIR="${HOME}/.dotfiles"
+DOTF_DIR="${HOME}/Documents/dotfiles"
 DOWN_DIR="${HOME}/Downloads"
 MUSIC_DIR="${HOME}/Music"
 PICS_DIR="${HOME}/Pictures"
 VIDS_DIR="${HOME}/Videos"
+DEV_DIR="${HOME}/dev/bricscad"
+DEVA_DIR="${HOME}/deva/bricscad"
+DEVB_DIR="${HOME}/devb/bricscad"
 
 # Recent directories array
 RECENT_DIRS=()
@@ -515,6 +518,9 @@ alias .....='cd_with_history ../../../..'    # Go up four levels
 [[ -d "${MUSIC_DIR}" ]] && alias mus='cd_with_history "${MUSIC_DIR}"' # Music
 [[ -d "${PICS_DIR}" ]] && alias pic='cd_with_history "${PICS_DIR}"'   # Pictures
 [[ -d "${VIDS_DIR}" ]] && alias vid='cd_with_history "${VIDS_DIR}"'   # Videos
+[[ -d "${DEV_DIR}" ]] && alias dv='cd_with_history "${DEV_DIR}"'     # dev
+[[ -d "${DEVA_DIR}" ]] && alias dva='cd_with_history "${DEVA_DIR}"'   # dev
+[[ -d "${DEVB_DIR}" ]] && alias dvb='cd_with_history "${DEVB_DIR}"'   # dev
 
 #-----------------------------------------------------------------------------
 # System Directories
