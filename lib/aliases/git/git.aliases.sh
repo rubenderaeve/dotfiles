@@ -147,7 +147,7 @@ if command -v git &>/dev/null; then
   alias grb='git rebase'
 
   # grbi: git rebase interactive
-  alias grbi='git rebase -i HEAD'
+  alias grbi='git rebase -i'
 
   # grbih: git rebase interactive head
   alias grbih='git rebase -i HEAD~1'
