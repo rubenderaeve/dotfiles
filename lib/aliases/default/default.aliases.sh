@@ -24,7 +24,12 @@
 #   - Ensure to validate that all aliases work as expected in the bash shell.
 
 set_default_aliases() {
-    fc -W
+    # Write history to file
+    if [[ -n "${ZSH_VERSION:-}" ]]; then
+        fc -W
+    elif [[ -n "${BASH_VERSION:-}" ]]; then
+        history -w
+    fi
 
     ## General aliases
     # Shortcut for the `clear` command.

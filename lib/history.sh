@@ -490,7 +490,11 @@ configure_history() {
 
   # Force write current history to file
   if command -v fc >/dev/null 2>&1; then
-    fc -W
+    if [[ -n "${ZSH_VERSION:-}" ]]; then
+        fc -W
+    elif [[ -n "${BASH_VERSION:-}" ]]; then
+        history -w
+    fi
   fi
 
   # Set up convenient aliases
