@@ -28,7 +28,7 @@
 #   ShellCheck Documentation: https://github.com/koalaman/shellcheck
 
 load_custom_configurations() {
-  local config_dir="${HOME}/.dotfiles/lib/configurations"
+  local config_dir="${DOTFILES}/configurations"
   local loaded_count=0
   local verbose=${DOTFILES_VERBOSE:-0}
   local ret=0

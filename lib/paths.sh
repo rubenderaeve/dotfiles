@@ -27,7 +27,7 @@
 #   ShellCheck Documentation: https://github.com/koalaman/shellcheck
 
 load_paths() {
-  local paths_dir="${HOME}/.dotfiles/lib/paths"
+  local paths_dir="${DOTFILES}/paths"
   local loaded_count=0
   local verbose=${DOTFILES_VERBOSE:-0}
   local ret=0

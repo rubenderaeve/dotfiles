@@ -27,7 +27,7 @@
 #   ShellCheck Documentation: https://github.com/koalaman/shellcheck
 
 load_custom_functions() {
-  local functions_dir="${HOME}/.dotfiles/lib/functions"
+  local functions_dir="${DOTFILES}/functions"
   local loaded_count=0
   local verbose=${DOTFILES_VERBOSE:-0}
   local ret=0
