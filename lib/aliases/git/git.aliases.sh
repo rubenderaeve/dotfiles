@@ -34,6 +34,7 @@
 #      3.0 Aliases to show what revision and author last modified each
 #          line of a file.
 #      3.1 Aliases to get and set repository or global options.
+#      4.0 Aliases to manage PR
 #
 ##  --------------------------------------------------------------------
 ##  1.0 Git Core aliases
@@ -151,6 +152,9 @@ if command -v git &>/dev/null; then
 
   # grbih: git rebase interactive head
   alias grbih='git rebase -i HEAD~1'
+
+  # gch: git cherry-pick
+  alias gch="git cherry-pick"
 
   # grs: Reset current HEAD to the specified state.
   alias grset='git reset'
@@ -555,6 +559,11 @@ if command -v git &>/dev/null; then
   # Undo the last push.
   alias undopush="git push -f origin HEAD^:master"
 
-  alias gch="git cherry-pick"
+  ##  ------------------------------------------------------------------
+  ##  4.0 Aliases to manage PR
+  ##  ------------------------------------------------------------------
+
+  # create PR and confirm on the web
+  alias gprw='gh pr create --fill --base main --web'
 
 fi
