@@ -79,6 +79,9 @@ if command -v git &>/dev/null; then
   # Restore staged working tree files.
   alias grss='git restore --staged'
 
+  # Restore working tree files and staged working tree files.
+  alias grssw='git restore --staged --worktree'
+
   # Remove files from the working tree and from the index.
   alias grm='git remove'
 
@@ -380,7 +383,7 @@ if command -v git &>/dev/null; then
   alias grprint="git remote -v | sed -n '/github.com.*push/{ s/^[^[:space:]]\+[[:space:]]\+//; s|git@github.com:|https://github.com/|; s/\.git.*//; p }'"
 
   # Gives some information about the remote <name>.
-  alias gs='git show'
+  alias gsh='git show'
 
   # Display where the origin resides.
   alias grso='git remote show origin'
@@ -441,16 +444,16 @@ if command -v git &>/dev/null; then
   ##  ------------------------------------------------------------------
 
   # Show the working tree status.
-  alias gst='git status'
+  alias gs='git status'
+  #
+  # Status with short format instead of full details.
+  alias gss='git status --short'
+
+  # Status with short format and showing branch and tracking info.
+  alias gssb='git status --short --branch'
 
   # Stash the changes.
   alias gsta='git stash save '
-
-  # Status with short format instead of full details.
-  alias gsts='git status --short'
-
-  # Status with short format and showing branch and tracking info.
-  alias gstsb='git status --short --branch'
 
   ##  ------------------------------------------------------------------
   ##  2.5 Aliases to create, list, delete or verify a tag object
