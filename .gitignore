@@ -82,6 +82,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# agents
+**/.letta
+
 # Other
 $RECYCLE.BIN/
 *.cab
