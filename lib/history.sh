@@ -534,16 +534,17 @@ EOF
 # ------------------------------------------------------------------------------
 # Main Execution
 # ------------------------------------------------------------------------------
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  # Script is being executed directly
-  if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-    print_usage
-    exit 0
-  fi
-fi
+# if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+#   # Script is being executed directly
+#   if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+#     print_usage
+#     exit 0
+#   fi
+# fi
 
-# Apply shell configurations and set up aliases
-apply_shell_configurations || {
-  echo "Warning: Could not apply shell-specific history configurations" >&2
-}
-configure_history
+# # Apply shell configurations and set up aliases
+# apply_shell_configurations || {
+#   echo "Warning: Could not apply shell-specific history configurations" >&2
+# }
+
+# configure_history

@@ -71,10 +71,10 @@ set_default_aliases() {
     alias halt='sudo /sbin/halt'
 
     # Alias to list recent commands
-    alias h='dotfiles_history'
+    # alias h='dotfiles_history'
 
     # Alias to view history
-    alias history='dotfiles_history'
+    # alias history='dotfiles_history'
 
     # Poweroff the system.
     alias poweroff='sudo /sbin/shutdown'
