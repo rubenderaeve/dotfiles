@@ -157,6 +157,27 @@ cd_with_history() {
     # Get the destination directory
     local dest="${1:-$HOME}"
 
+    # Handle 'cd -' to go to previous directory
+    if [[ "${dest}" == "-" ]]; then
+        builtin cd - || return 1
+
+        # Save last working directory
+        safe_write_file "${LAST_DIR_FILE}" "${PWD}"
+
+        # List directory contents if enabled
+        if [[ "${AUTO_LIST_AFTER_CD}" == "true" ]]; then
+            local item_count
+            item_count=$(count_dir_items "${PWD}")
+            if [[ ${item_count} -lt ${LARGE_DIR_THRESHOLD} ]]; then
+                eval "${LS_CMD}"
+            else
+                echo "Directory contains ${item_count} items. Skipping automatic listing."
+                echo "Use 'ls' to list contents."
+            fi
+        fi
+        return 0
+    fi
+
     # Check if the destination is a bookmark
     if [[ -f "${BOOKMARK_FILE}" ]]; then
         local bookmark_dest
@@ -498,11 +519,12 @@ lwd() {
 #-----------------------------------------------------------------------------
 # Parent Directory Shortcuts
 #-----------------------------------------------------------------------------
-alias -- -='cd -'                            # Go to the previous directory
+alias -- -='cd -'                            # Go to the previous directory (now handled by cd_with_history)
 alias ..='cd_with_history ..'                # Go up one level
 alias ...='cd_with_history ../..'            # Go up two levels
 alias ....='cd_with_history ../../..'        # Go up three levels
 alias .....='cd_with_history ../../../..'    # Go up four levels
+alias ww='cd ../worktree'
 
 #-----------------------------------------------------------------------------
 # Home and Frequently Used Directories

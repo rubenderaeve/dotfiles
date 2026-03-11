@@ -21,6 +21,9 @@ export PATH="${HOME}/.cargo/bin:${PATH}"
 # Add Go binaries to PATH (check version with: go version)
 export PATH="${HOME}/go/bin:${PATH}"
 
+# Add Clion binaries to PATH
+export PATH="${HOME}/clion-2024.3.1.1/bin:${PATH}"
+
 # Add Node.js global modules binaries to PATH (check version with: node --version)
 export PATH="${HOME}/.node_modules/bin:${PATH}"
 

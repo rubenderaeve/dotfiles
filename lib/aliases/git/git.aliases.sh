@@ -141,6 +141,12 @@ if command -v git &>/dev/null; then
   # gbrd: Delete the remote-tracking branches.
   alias gbrd='git branch -d -r'
 
+  # gbc: Copy the current branch
+  alias gbc='git branch --show-current | xclip -selection clipboard'
+
+  # gbt: create a temp branch
+  alias gbt='git checkout -b temp$(date +"%Y%m%d%H%M")'
+
   # Print a list of branches and their commits.
   alias gbrsb='git show-branch'
 
@@ -514,6 +520,7 @@ if command -v git &>/dev/null; then
   # Get the current branch name.
   alias grpa='git rev-parse --abbrev-ref HEAD'
 
+  alias ghc='git rev-parse HEAD | xclip -selection clipboard'
   ##  ------------------------------------------------------------------
   ##  2.9 Aliases to remove files from the working tree and from the
   ##      index.
