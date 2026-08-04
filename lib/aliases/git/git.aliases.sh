@@ -24,16 +24,17 @@
 #      2.2 Aliases to revert some existing commits.
 #      2.3 Aliases to initialize, update or inspect submodules.
 #      2.4 Aliases to show the working tree status.
-#      2.5 Aliases to create, list, delete or verify a tag object
+#      2.5 Aliases to manage worktrees.
+#      2.6 Aliases to create, list, delete or verify a tag object
 #          signed with GPG.
-#      2.6 Aliases to show various types of objects.
-#      2.7 Aliases to reset current HEAD to the specified state.
-#      2.8 Aliases to pick out and massage parameters.
-#      2.9 Aliases to remove files from the working tree and from the
+#      2.7 Aliases to show various types of objects.
+#      2.8 Aliases to reset current HEAD to the specified state.
+#      2.9 Aliases to pick out and massage parameters.
+#      3.0 Aliases to remove files from the working tree and from the
 #          index.
-#      3.0 Aliases to show what revision and author last modified each
+#      3.1 Aliases to show what revision and author last modified each
 #          line of a file.
-#      3.1 Aliases to get and set repository or global options.
+#      3.2 Aliases to get and set repository or global options.
 #      4.0 Aliases to manage PR
 #
 ##  --------------------------------------------------------------------
@@ -462,7 +463,29 @@ if command -v git &>/dev/null; then
   alias gsta='git stash save '
 
   ##  ------------------------------------------------------------------
-  ##  2.5 Aliases to create, list, delete or verify a tag object
+  ##  2.5 Aliases to manage worktrees
+  ##  ------------------------------------------------------------------
+
+  # List all worktrees.
+  alias gwt='git worktree list'
+
+  # Show status summary for all worktrees.
+  gwts() {
+    git worktree list --porcelain | grep worktree | awk '{print $2}' | while read wt; do
+      count=$(git -C "$wt" status -s | command wc -l | tr -d ' ')
+      branch=$(git -C "$wt" branch --show-current)
+      if [ "$count" -eq 0 ]; then
+        echo "✓  $wt  [$branch]  clean"
+      else
+        echo "✗  $wt  [$branch]  $count changed file(s)"
+        git -C "$wt" --no-pager status -s | head -20
+      fi
+      echo
+    done
+  }
+
+  ##  ------------------------------------------------------------------
+  ##  2.6 Aliases to create, list, delete or verify a tag object
   ##  signed with GPG.
   ##  ------------------------------------------------------------------
 
@@ -476,7 +499,7 @@ if command -v git &>/dev/null; then
   alias gtl='git describe --tags --abbrev=0'
 
   ##  ------------------------------------------------------------------
-  ##  2.6 Aliases to show various types of objects.
+  ##  2.7 Aliases to show various types of objects.
   ##  ------------------------------------------------------------------
 
   # Show various types of objects
@@ -492,7 +515,7 @@ if command -v git &>/dev/null; then
   alias gshwho='git shortlog --summary --numbered --no-merges'
 
   ##  ------------------------------------------------------------------
-  ##  2.7 Aliases to reset current HEAD to the specified state.
+  ##  2.8 Aliases to reset current HEAD to the specified state.
   ##  ------------------------------------------------------------------
 
   # Reset commit clean.
@@ -508,10 +531,10 @@ if command -v git &>/dev/null; then
   alias gress='git reset --soft HEAD~1'
 
   # Reset to upstream.
-  alias gresu='git reset --hard $(git upstream-branch)'
+  alias gresu='git reset --hard @{u}'
 
   ##  ------------------------------------------------------------------
-  ##  2.8 Aliases to pick out and massage parameters.
+  ##  2.9 Aliases to pick out and massage parameters.
   ##  ------------------------------------------------------------------
 
   # Get the top level directory name.
@@ -522,7 +545,7 @@ if command -v git &>/dev/null; then
 
   alias ghc='git rev-parse HEAD | xclip -selection clipboard'
   ##  ------------------------------------------------------------------
-  ##  2.9 Aliases to remove files from the working tree and from the
+  ##  3.0 Aliases to remove files from the working tree and from the
   ##      index.
   ##  ------------------------------------------------------------------
 
@@ -546,7 +569,7 @@ if command -v git &>/dev/null; then
   alias grmx='git ls-files -z -d | xargs -0 git rm --'
 
   ##  ------------------------------------------------------------------
-  ##  3.0 Aliases to show what revision and author last modified each
+  ##  3.1 Aliases to show what revision and author last modified each
   ##      line of a file.
   ##  ------------------------------------------------------------------
 
@@ -554,7 +577,7 @@ if command -v git &>/dev/null; then
   # alias gblau='git ls-files | xargs -n1 git blame --line-porcelain | sed -n "s/^author //p" | sort -f | uniq -ic | sort -nr'
 
   ##  ------------------------------------------------------------------
-  ##  3.1 Aliases to get and set repository or global options.
+  ##  3.2 Aliases to get and set repository or global options.
   ##  ------------------------------------------------------------------
 
   # Better git diff, word delimited and colorized.
